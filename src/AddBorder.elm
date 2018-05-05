@@ -3,23 +3,6 @@ module Main exposing (..)
 import Html exposing (div, text, p)
 
 
--- For
--- picture = ["abc",
---            "ded"]
--- the output should be
--- addBorder(picture) = ["*****",
---                       "*abc*",
---                       "*ded*",
---                       "*****"]
--- [input] array.string picture
--- A non-empty array of non-empty equal-length strings.
--- Guaranteed constraints:
--- 1 ≤ picture.length ≤ 100,
--- 1 ≤ picture[i].length ≤ 100.
--- [output] array.string
--- The same matrix of characters, framed with a border of asterisks of width 1.
-
-
 picture : List String
 picture =
     [ "abcde"
@@ -32,7 +15,7 @@ picture =
 
 generateAsterisks : Int -> String
 generateAsterisks n =
-    (List.range 0 n) |> (List.map (\a -> "*")) |> String.join ""
+    (List.range 0 n) |> (List.map (\_ -> "*")) |> String.join ""
 
 
 mapToText : List String -> List (Html.Html msg)
@@ -57,7 +40,7 @@ wrap l =
             List.map (\a -> "*" ++ a ++ "*") l
 
         topAndBottomBars =
-            (List.head l) |> getNumberOfAsterisks |> generateAsterisks
+            l |> List.head |> getNumberOfAsterisks |> generateAsterisks
     in
         List.concat [ [ topAndBottomBars ], wrappedRows, [ topAndBottomBars ] ]
 
